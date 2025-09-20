@@ -21,8 +21,7 @@ if st.button("Load", disabled = False ):
     prep.group_clients()
     X_all_new, y_new = prep.X_all_new, prep.y_new
     st.write('ok')
-    with open("./model.pkl", "rb") as model_pkl: # rb - режим чтения, ./model.pkl - файл куда сохраняется модель
-        knn = load( model_pkl )                  # загруженная модель knn
+
 
 limit_ball = st.slider('LIMIT_BALL', min_value=0, max_value=1000000, step=100, format=None)        
 pd1 = st.slider('Amount of days(default>0, nodefault<=0) 1-th month', min_value=-10, max_value=10, step=1, format=None)
@@ -53,11 +52,11 @@ col1, col2, col3, col4 = st.columns(4)
 
 if col1.button("KNeighbors", disabled = False ):    
     with open("./knn.pkl", "rb") as f: # rb - режим чтения, ./model.pkl - файл куда сохраняется модель
-        rfc = load( f )                # загруженная модель knn
+        knn = load( f )                # загруженная модель knn
         exp = [limit_ball, pd1, pd2, pd3, pd4, pd5, pd6, b1, b2, b3, b4, b5, b6, p1, p2, p3, p4, p5, p6]
 
-        pred = rfc.predict([exp])[0]
-        pred_proba = rfc.predict_proba([exp])[0]
+        pred = knn.predict([exp])[0]
+        pred_proba = knn.predict_proba([exp])[0]
         if pred == 0:
             st.success( f"{pred} -- no default " )
             st.success( pred_proba[pred] )
