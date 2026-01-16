@@ -1,0 +1,659 @@
+\documentclass[a4paper,12pt, listof=totoc]{scrreprt}
+\usepackage[T2A]{fontenc}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx} % графики
+\usepackage{subfigure} % пакет упрощает нескольких рисунков внутри одного плавающего объекта, причемпомимо общей подписи каждый рисунок иожет иметь свою общую
+\usepackage{pdfpages}
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsmath} % математические символы
+\graphicspath{ {images/} }
+\usepackage[utf8]{inputenc}    % кодировка
+\usepackage[english,russian]{babel}
+\usepackage{varioref}
+\usepackage{indentfirst}
+
+
+%------------------------------ Межстрочный интервал
+\usepackage{indentfirst}
+\setlength{\parindent}{1.25cm}    % красная строка
+\usepackage{setspace}
+\onehalfspacing                  % полуторный интервал
+
+
+%------------------------------------- Колонтитулы
+\usepackage{fancybox,fancyhdr}
+\renewcommand{\headrulewidth}{0pt} % убрать разделительную линию.
+\fancyhf{} % очистка текущих значений
+
+% ----------------Отступы
+\usepackage[%textwidth=19cm,
+            %textheight=20cm,
+            left=2.5cm,
+            right=2cm,
+            top=2cm,
+            bottom=3cm, 
+           ]{geometry} % поля
+\usepackage{ragged2e}
+\usepackage{titlesec}
+\titleformat{\chapter}%
+  {\normalfont\bfseries\Large\centering} % оформление текста заголовка
+   {\MakeUppercase{Глава \thechapter.}}
+  {0.5em}
+  {\MakeUppercase}
+
+\titlespacing*{\chapter}{0pt}{-1em}{0.5em}
+\titleformat{\section}
+  {\normalfont\bfseries\large\centering}
+  {\thesection}
+  {1em}
+  {}  
+  
+\titlespacing*{\section}{0pt}{0.5em}{0.5em}
+
+\titleformat{\subsection}
+  {\normalfont\bfseries\normalsize\centering}
+  {\thesubsection}
+  {1em}
+  {}
+  
+\titlespacing*{\subsection}{0pt}{0.5em}{0.25em}
+  
+\setlength{\textfloatsep}{5pt plus 1.0pt minus 2.0pt}
+\setlength{\floatsep}{5pt plus 5.0pt minus 5.0pt}
+\setlength{\intextsep}{5pt plus 5.0pt minus 5.0pt}
+\titlespacing*{\paragraph}{0pt}{0pt}{0cm}
+\usepackage{indentfirst}
+\usepackage{babel}
+\usepackage{setspace}
+\usepackage[nottoc]{tocbibind}
+\usepackage{indentfirst}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+
+
+% --- Прочие полезные пакеты ---
+\usepackage{tikz}              % для рисунков
+\usepackage{fontawesome}       % иконки
+\usepackage{cmap}              % корректный поиск в PDF
+
+
+%-----------------------------Таблицы  
+\usepackage{caption} %заголовки плавающих объектов
+\usepackage{float}  
+\usepackage{placeins}
+\usepackage{array, longtable}
+\usepackage{booktabs} 
+\renewcommand{\thetable}{\thesection.\arabic{table}}   % Формат таблицы секция.номер
+\captionsetup[table]{format = plain, font={small}, textfont = normal}
+\usepackage{multirow}
+\usepackage{colortbl}
+\renewcommand{\tabcolsep}{0.2cm}   %% increase table column spacing
+\newcommand{\specialcell}[2][c]{%
+\begin{tabular}[#1]{@{}c@{}}#2\end{tabular}} % Перенос строки в таблице
+
+%-----------------------------Главы 
+\makeatletter
+\renewcommand{\@seccntformat}[1]{\csname the#1\endcsname.\;} %Точка после section
+\def\sectionsuffix{.}
+\makeatother
+
+\usepackage{tocloft}
+\makeatletter
+\makeatother
+\usepackage{hhline}
+
+\renewcommand{\cftchapfont}{\bfseries}
+\renewcommand{\cftchapfont}{}
+\renewcommand{\cftchappresnum}{Глава }
+\renewcommand{\cftchapaftersnum}{.}
+\renewcommand{\cftchapnumwidth}{4.5em}
+\setlength{\cftbeforetoctitleskip}{-12pt} % отступ перед оглавлением
+\setlength{\cftaftertoctitleskip}{10pt} % отступ после оглавления
+\addto{\captionsrussian}{%
+ \renewcommand{\contentsname}{\Large{\hspace*{6cm}ОГЛАВЛЕНИЕ}}}%
+
+\makeatletter
+\renewcommand{\l@section}{\@dottedtocline{1}{0em}{4.5em}} % 0em отступ секции в оглавлении
+\renewcommand{\l@subsection}{\@dottedtocline{1}{0em}{4.5em}}
+\renewcommand\cftchapdotsep{\cftdotsep} % Добавляем многоточие в главу
+\renewcommand\cftchapleader{\cftdotfill{\cftchapdotsep}} % Добавляем многоточие в главу
+\makeatother
+
+\titlespacing{\chapter}{60pt}{-30pt}{20pt}
+\setlength{\cftbeforetoctitleskip}{-30pt} % отступ перед оглавлением
+\setlength{\cftaftertoctitleskip}{30pt} % отступ после оглавления 
+
+
+\makeatletter % Убрать жирный шрифт номеров страниц в оглавлении
+\let\oldl@chapter\l@chapter
+\def\l@chapter#1#2{\oldl@chapter{#1}{\normalfont{#2}}}
+\makeatother
+
+
+%---------------------Сокращения----------------------- 
+\newcommand*{\BE}{\begin{equation}} %
+\newcommand*{\EN}{\end{equation}} %
+\newcommand*{\nn}{\nonumber}
+\newcommand*{\T}[1]{\text{#1}}
+\makeatletter
+\newcommand*{\rom}[1]{\expandafter\@slowromancap\romannumeral #1@}
+\makeatother
+
+
+%---------------Глубина нумерации глав,секций---------------
+\setcounter{secnumdepth}{3}
+\usepackage{amsmath}
+\counterwithin{equation}{section} % Нумерация формул по секциям
+\renewcommand{\theequation}{\thepart\arabic{equation}} % Убрать точку в формуле после part
+
+
+%---------------Рисунки, графики---------------
+\usepackage{caption}
+\captionsetup[figure]
+{format = plain, 
+font = small, 
+textfont = normal,
+name = Рисунок}
+
+
+%---------------Рисунки, графики---------------
+\usepackage{amsthm}
+
+\theoremstyle{break}
+\newtheorem{theorem}{Теорема}
+\newtheorem{example}{Пример}[section]
+\newtheorem{notice}{Замечание}[section]
+\newtheorem{df}{Определение}[section]
+\newtheorem{co}{Комментарий}[chapter]
+
+
+% Двоеточие заменили на дефис
+
+\RequirePackage{caption}
+\DeclareCaptionLabelSeparator{defis}{ -- }
+\captionsetup{justification=centering,labelsep=defis}
+
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+
+
+%-----------------------------------Теоремы, определения, леммы
+%\usepackage{theorem}
+%\usepackage{amsthm}
+%\theoremstyle{break}
+%\newtheorem{theorem}{Th}
+%\newtheorem{example}{Example}[section]
+%\newtheorem{notice}{Замечание}[section]
+%\newtheorem{df}{Определение}[section]
+
+
+%----------------------------Python
+\usepackage{listings}
+\lstloadlanguages{Python}
+\lstset{
+  language=Python,
+  basicstyle=\ttfamily\small,
+  numbers=left,
+  numberstyle=\tiny,
+  frame=single,
+  breaklines=true
+}
+
+\usepackage{chngcntr}
+\AtBeginDocument{
+  \counterwithout{lstlisting}{section}
+  \renewcommand{\thelstlisting}{\arabic{lstlisting}}
+}
+\usepackage{caption}
+\DeclareCaptionLabelSeparator{dash}{\space--\space}
+\captionsetup[lstlisting]{labelformat=simple,
+                                     labelsep=dash
+                                     }
+
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{tcolorbox}
+\usepackage{titlesec}
+
+\AtBeginDocument{
+\renewcommand\listfigurename{Список иллюстративного материала}
+\renewcommand\listtablename{Список таблиц}
+\renewcommand\bibname{Список литературы}
+\renewcommand\figurename{Рисунок}
+\renewcommand\tablename{Таблица}
+\renewcommand\chaptername{Глава}
+\thispagestyle{empty} }
+
+
+%----------------------------Библиография
+\makeatletter
+\renewcommand\@biblabel[1]{#1}
+\makeatother
+
+
+%-----------------гиперссылки
+\usepackage{url}
+\usepackage[   
+    colorlinks=true,
+    citecolor=black,
+    anchorcolor=black,
+    urlcolor=blue,     
+    urlbordercolor={1 1 1},
+    pdfauthor={L.Lamport},
+    pagebordercolor={1 1 0},
+    pdfborder={2 1 2 [6 0]},
+    linkcolor=black,
+    pdfhighlight=key
+]{hyperref}
+\captionsetup{figurewithin=none}  % Одноуровневая нумерация графиков
+\captionsetup{tablewithin=none}   % Одноуровневая нумерация таблиц
+
+\begin{document}
+	\graphicspath{ {./title/}, {./ch1/}, {./ch2/}, {./py/} }
+	\includepdf[pages=1]{title/titlepage.pdf} % Загружает только!!!
+	\tableofcontents
+	\clearpage 
+	\setcounter{page}{3}  % Нумерация страниц начинается с 2-х
+	\pagestyle{plain} % нумерация вкл. внизу, посередине
+	
+	\section*{\centering Введение} %\addcontentsline{toc}{section}{Введение}
+	\addcontentsline{toc}{chapter}{Введение}
+	
+	\bibliography{references}
+	\hyphenation{confusion}
+	
+	\textbf{Актуальность темы исследования}. В настоящее время, в условиях технологического развития, искусственный интеллект (далее ИИ) стал необходимым инструментом, позволяющим с высокой скоростью обрабатывать большие массивы данных. Для банковского сектора управление кредитными рисками является одной из ключевых задач, в частности оценка кредитоспособности заемщиков. В современном финансовом секторе Казахстана использование кредитного скоринга поднимает важный вопрос о справедливом доступе к потребительскому кредитованию. Кредитный скоринг -- это статистический процесс, позволяющий прогнозировать вероятность дефолта заемщика банка. Значимость кредитного скоринга для Казахстана определяется его ролью в снижении долговой нагрузки населения, ограничении массового заимствования и обеспечении устойчивого и эффективного развития финансового сектора.
+	
+	С развитием услуг микрокредитования и предоставления кредитов в рассрочку банки стали получать значительно больше заявок на кредит, что на первоначальном этапе было выгодно финансовым учреждениям. Однако по мере роста количества заявок анализ разнообразных кредитных историй клиентов стал сложной задачей для сотрудников банка, что приводило к снижению прибыли. В связи с этим возникает необходимость в автоматизации и оптимизации процесса оценки и выдачи кредитов с помощью технологий ИИ, что позволяет минимизировать кредитные риски для обеих сторон. Практическая значимость работы заключается в том, что результаты исследования могут быть использованы финансовыми организациями для повышения эффективности принятия кредитных решений. Применение алгоритмов машинного и глубокого обучения позволит банкам принимать более точные и обоснованные решения о кредитоспособности клиентов, снижая вероятность возникновения финансовых рисков.
+	
+	\textbf{Степень разработанности темы исследования}. Применение искусственного интеллекта в банковском кредитовании рассматривались в работах H. Sadok, F. Sakka и M.E. El Maknouzi, в магистерской диссертации Ш. Сяоюй, а также в исследованиях Г.З. Зиятбековой, А.А. Давыдовой и О.Л. Ксенофонтовой, посвященных использованию методов машинного обучения и интеллектуального анализа данных в банковской сфере. Данные работы свидетельствуют об устойчивом научном интересе внедрения ИИ в деятельность финансовых учреждений. Тем не менее для Казахстана данное направление является новым в контексте цифровизации финансового сектора и, следовательно, требует дальнейшего исследования.
+	
+	\textbf{Цель и задачи исследования} -- разработать метод прогнозирования дефолта клиента банка при выдаче кредита на основе методов машинного и глубокого обучения.
+	Для достижения поставленной цели были определены следующие задачи:
+	\begin{enumerate}
+	       \item Провести анализ и предобработку данных о заемщиках.
+               \item Обучить и протестировать модели классификации для прогнозирования дефолта.
+               \item Подобрать гиперпараметры моделей для повышения качества прогнозирования дефолтных клиентов.
+               \item Оценить качество моделей и проанализировать полученные результаты.
+        \end{enumerate}
+        
+        \textbf{Объектом исследования} является выданный кредит банком и связанное с ним наступление либо отсутствие дефолта по выданным кредитам.
+       
+        \textbf{Предметом исследования} является кредитный скоринг для оценки риска невозврата кредита.
+        
+        Для достижения целей и задач исследования использовались следующие методы:
+        \begin{itemize}
+               \item машинного и глубокого обучения;
+               \item статистического анализа;
+               \item оценивания моделей;
+               \item визуализации исторических данных.
+        \end{itemize}
+        
+        \textbf{Научная новизна исследования} исследования заключается в следующем:
+         \begin{itemize}
+               \item после завершения работы добавим
+        \end{itemize}
+        
+        \textbf{Информационной базой исследования} являлись платформы: kaggle, github, stackoverflow, нормативно-правовая база, научные статьи и монографии.
+        
+        \textbf{Структура и объем работы}. Выпускная квалификационная работа состоит из 3 глав, заключения, списка литературы, Х таблиц, Y рисунков и Z приложений.
+        
+        \textbf{Объем исследовательской работы:} 50 страниц.
+        
+        
+        \chapter{Кредитный риск и роль искусственного интеллекта в его оценке}
+       	
+	\section{Сущность и классификация кредитных рисков банков второго уровня}
+	
+	\section{Подходы к оценке и прогнозированию кредитного риска: классические модели и современные методы искусственного интеллекта}
+
+	
+	\chapter{Алгоритмы машинного и глубокого обучения в задаче о кредитном скоринге}
+       	
+	\section{Предобработка данных кредитной истории клиентов банка}
+	В данной работе используются обезличенные данные АО «Альфа-Банка» \cite{AlfaBank}. Данные состоят из 12 файлов (\texttt{train\_data\_0.pq - train\_data\_11.pq}), содержащих информацию о платежах клиентов банка. В каждом из 12 файлов содержится информация о 250 000 клиентах. При этом один клиент может иметь несколько кредитов, и каждому такому клиенту соответствует персональный \texttt{id} (идентификационный номер). Отдельно имеется файл \texttt{train\_target.csv}, который состоит из 3 млн строк, и каждая строка соответствует клиенту с меткой (флагом) равной 0 (отсутствие дефолта) или 1 (наличие дефолта). 
+	Задача предобработки данных состоит в структурировании исходной информации, т.е. формирование единого датасета, выделение важных признаков (колонок), выявление аномальных клиентов (определение аномальности  будет приведено ниже), визуализация данных и тестирование моделей МО и ГО на этих данных. Программный код формирования единого датасета реализован в листинге \ref{train_data_csv_all_py} (см. приложение А). 
+{\co Пояснение к листингу: \ref{train_data_csv_all_py}} 
+	\begin{enumerate}
+	       \item Строки 1 -- 3. Импортируются необходимые библиотеки: \texttt{pandas} -- для работы с табличными данными, \texttt{os} -- для работы с файловой системой и \texttt{pyarrow.parquet} -- для чтения файлов формата \texttt{.parquet}.
+               \item Строка 5. Задается путь \texttt{path = "train\_data"} к папке,
+в которой находятся исходные файлы формата \texttt{.pq}.
+               \item Строки 6 -- 13. Запускается цикл \texttt{for}, который перебирает все файлы в папке \texttt{train\_data}. Формируется имя поочередного файла \texttt{train\_data\_i.pq}, создается объект \texttt{ParquetDataset} для текущего файла, из которого данные считываются в \texttt{DataFrame (df)}. Затем выполняется агрегация данных по признаку \texttt{id}, вычисляются средние значения признаков, после чего данные сохраняются в соответствующий \texttt{csv} -- файл в папку \texttt{train\_data\_csv\_all}.
+               \item Строка 14. Выводится список файлов каталога \texttt{train\_data} для проверки корректности формирования файлов.
+               \item Строки 16 -- 21. Задается путь к папке с полученными \texttt{csv}-файлами \texttt{train\_data\_csv\_all}. Создается пустой список \texttt{frames} для последующего хранения отдельных \texttt{DataFrame}. Затем запускается цикл по файлам в папке \texttt{train\_data\_csv\_all}, который последовательно перебирает все файлы в формате \texttt{.csv}. Результат сохраняется в \texttt{DataFrame (df)} и добавляется в список \texttt{frames}. 
+               \item Строки 23 -- 26. Все элементы списка \texttt{frames} объединяются в единый \texttt{DataFrame result} с помощью функции \texttt{pd.concat}. Полученный датасет сохраняется в файл \texttt{1\_data\_csv\_all.csv}, после чего заново считывается в переменную \texttt{df\_all} для последующего анализа.
+        \end{enumerate}
+        
+        После преобразования получился следующий датасет. В таблице \ref{df_fragment} приводится фрагмент датасета:
+        
+\begin{table}[H]
+\centering
+\caption{Фрагмент преобразованного датасета, содержащий первых 5 клиентов}
+\label{df_fragment}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+  \hline
+  \rowcolor[gray]{.9}
+   id & enc\_paym\_0 & enc\_paym\_1 & enc\_paym\_2 & enc\_paym\_3 & enc\_paym\_4 & flag \\
+  \hline
+  1750000 & 0.17 & 0.17 & 0.17 & 0.33 & 0.67 & 0 \\ \hline
+  1750001 & 0.00 & 0.75 & 0.75 & 0.75 & 0.75 & 0 \\ \hline
+  1750002 & 0.39 & 0.33 & 0.72 & 0.67 & 1.17 & 0 \\ \hline
+  1750003 & 0.18 & 0.23 & 0.41 & 0.50 & 0.55 & 0 \\ \hline
+  1750004 & 0.60 & 0.60 & 0.60 & 0.60 & 1.20 & 0 \\ \hline
+\end{tabular}
+
+\vspace{3mm} 
+
+\begin{minipage}{0.98\textwidth}
+  \fontsize{9}{11}\selectfont
+  \justifying
+Примечание: id -- идентификатор заявки; \texttt{enc\_paym\_0}, \dots, \texttt{enc\_paym\_n} -- статусы ежемесячных платежей за последние $n$ месяцев; flag -- статус кредита (0=кредит полностью оплачен). Полный датасет состоит из 61 признака, включая дополнительные характеристики по кредитам.
+\end{minipage}
+\end{table}
+        
+{\co Пояснение к агрегированию клиентов в листинге: \ref{train_data_csv_all_py}}    
+     
+        Агрегация клиентов по идентификатору \texttt{id} в строке 11 необходима для определения итоговой метки (флага) каждого клиента, поскольку одному заемщику может соответствовать несколько кредитных договоров. Задача состоит в присвоении каждому кредиту одного заемщика единую итоговую. метку. В данном исследовании в качестве общего значения для всех кредитов используется среднее исходных значений. Для понимания идеи приводится следующий пример в виде таблицы  \ref{table_1_1:dfgr} :
+        
+\begin{center}
+  \begin{longtable}{|c|c|c|c|c|c|c|c|c|}
+   \caption{Дисциплина оплаты кредитов клиента (id = 1)}
+    \label{table_1_1:dfgr} \\
+    \hline
+    \rowcolor[gray]{.9}
+     id  &  N  &  M1 &  M2 & M3 & M4 & M5 & M6 & flag   \\
+     \hline
+     1   &  1   &  1   &  0    &  1   &  1   &  0   &  1  &\multirow{3}{*}{0}\\
+     \hhline{|--------~|} % горизонтальная линия с 1-ой строки по по 8-ую строку
+     1   &  2   &  0   &  \cellcolor[gray]{.9}\textbf{1}  &  0   &  1   &  1   &  2  &\\
+     \cline{1-8}
+     1   &  3   &  1   &  2    &  0   &  0   &  3   &  2  &\\
+     \cline{1-9} 
+     & &\multicolumn{6}{|c|}{ Среднее значение } & \\
+     \hline
+     1  &   &  0.67  &  1  &  0.33  &  1  &  1.33  &  1.67  & 0 \\
+     \hline
+\end{longtable}
+    
+\begin{minipage}{\textwidth}
+   \fontsize{9}{11}\selectfont
+   \justifying
+   Источник: составлено автором на основе: Соревнование на данных кредитных историй [Электронный ресурс] / Open Data Science. – URL: \url{https://ods.ai/competitions/dl-fintech-bki} (дата обращения: 25.11.2025).
+\end{minipage}
+\end{center}
+        
+        В данной таблице признаки означают следующее:
+\begin{enumerate}
+   \item \texttt{id} -- идентификационный номер клиента;
+   \item \texttt{N} -- номер кредита;
+   \item \texttt{M1,...,M6} -- статусы погашения в течение 6 месяцев (0=платеж вовремя оплачен, 1=задержка платежа на 1 день, 2=задержка платежа на 2 дня, 3=задержка платежа на 3 дня);
+    \item \texttt{flag} -- статус кредита (0=кредит полностью оплачен).
+\end{enumerate}
+        
+        В таблице \ref{table_1_1:dfgr} на пересечении N=2 (второго кредита) и M2 (платеж во втором месяце) выделена цифра 1, означающая, что платеж по второму кредиту во втором месяце был оплачен с опозданием на 1 день.
+        
+        Таким образом, данные трех строк, соответствующих трем кредитам клиента, в таблице \ref{table_1_1:dfgr} были усреднены и преобразованы в одну строку, которая содержит агрегированную информацию по клиенту с \texttt{id = 1}. В целом агрегировать клиентов можно не только по среднему значению, но и по моде или медиане. Однако в данной работе выбрано среднее значение, поскольку оно обладает важными статистическими свойствами, такими как несмещенность и состоятельность. После группирования данных был сформирован новый датасет, состоящий из 3 млн клиентов, каждому из которых соответствует одна итоговая метка. Получившийся датасет содержит 61 признак, из которых далее необходимо отобрать наиболее информативные, т.е. такие признаки, существенно влияющие на точность алгоритмов МО и ГО.
+        
+        
+\subsection{Метод главных компонент}
+
+Метод главных компонент (англ. $principal\ component\ analysis$, $PCA$) -- метод сокращения размерности данных, позволяющий уменьшать количество признаков с сохранением максимального объема исходной информации\cite{PCA}, на которых обучаются модели МО и ГО.
+
+Как уже было отмечено выше сформированный датасет содержит 61 признак (столбец). Задача состоит в том, чтобы найти такие признаки, на которые модели МО и ГО показывали приемлемую точность. Следует отметить, что редукция признаков может уменьшить точность алгоритмов, поэтому необходимо внимательно следить за процессом сокращения данных. В качестве тестового алгоритма был выбран алгоритм $Random\ Forest$ (случайный лес), поскольку в статье С.В. Смирнова\cite{Smirnov}  был проведен анализ предпочтения исследователей к алгоритмам МО, показавший, что наиболее популярным является случайный лес.
+
+Из преобразованного датасета изначально выбираются только некатегориальные признаки и формируется новый датасет, содержащий 41 признак. Ниже приводится смысл этих признаков:
+
+\begin{enumerate}
+    \item \texttt{pre\_pterm} -- плановое количество дней с даты открытия кредита до даты его закрытия;
+    \item \texttt{pre\_fterm} -- фактическое количество дней с даты открытия кредита до даты его закрытия;
+    \item \texttt{pre\_loans\_next\_pay\_summ} -- сумма следующего платежа по кредиту;
+    \item \texttt{pre\_loans\_outstanding} -- оставшаяся невыплаченная сумма кредита;
+    \item \texttt{pre\_loans\_total\_overdue} -- текущая просроченная задолженность по кредиту;
+    \item \texttt{pre\_loans\_max\_overdue\_sum} -- максимальная просроченная задолженность по кредиту за весь срок;
+    \item \texttt{pre\_loans\_credit\_cost\_rate} -- полная стоимость кредита;
+    \item \texttt{is\_zero\_loans5} -- флаг: нет просрочек до 5 дней;
+    \item \texttt{is\_zero\_loans530} -- флаг: нет просрочек от 5 до 30 дней;
+    \item \texttt{is\_zero\_loans3060} -- флаг: нет просрочек от 30 до 60 дней;
+    \item \texttt{is\_zero\_loans6090} -- флаг: нет просрочек от 60 до 90 дней;
+    \item \texttt{is\_zero\_loans90} -- флаг: нет просрочек более чем на 90 дней;
+    \item \texttt{pre\_util} -- отношение оставшейся невыплаченной суммы кредита к кредитному лимиту;
+    \item \texttt{pre\_maxover2limit} -- отношение максимальной просроченной задолженности к кредитному лимиту;
+    \item \texttt{is\_zero\_util} – флаг: отношение оставшейся невыплаченной суммы кредита к кредитному лимиту равно 0;
+    \item \texttt{is\_zero\_over2limit} -- флаг: отношение текущей просроченной задолженности к кредитному лимиту равно 0;
+   \item \texttt{enc\_paym\_0}, \dots, \texttt{enc\_paym\_n} -- статусы ежемесячных платежей за последние $n$ месяцев.
+\end{enumerate}
+
+Далее из этих 41 признака необходимо выбрать только такие, которые вносят наибольший вклад в информативность данных. В листинге  \ref{feat_41_py} (см. Приложение А) реализован метод главных компонент. На таком наборе данных алгоритм показывает следующие метрики (см. Таблицу \ref{metrics_41}):
+
+\begin{center}
+  \begin{longtable}{|c|c|c|c|c|c|c|}
+    \caption{Метрики точности на 41 признаке}
+    \label{metrics_41} \\
+    \hline
+    \multicolumn{7}{|c|}{Алгоритм -- Случайный лес}\\
+    \hline
+    \rowcolor[gray]{.9}
+    \specialcell{Flag\\метка} &
+    \specialcell{Precision\\точность} &
+    \specialcell{Recall\\полнота} &
+    \specialcell{F1-score\\F1-мера} &
+    \specialcell{Accuracy\\точность}  &
+    ROC AUC &
+    Количество    \\
+    \hline
+    \multicolumn{7}{|c|}{Тренировочная выборка}\\
+    \hline
+    0 & 1.00 & 0.97 & 0.98 &
+    \multirow{2}{*}{0.97} &   
+    \multirow{2}{*}{0.54} &  
+    724588 \\                    
+    \cline{1-4} \cline{7-7}
+    1 & 0.00 & 0.00 & 0.00 &  
+      &      & 25412 \\       
+    \hline
+    \multicolumn{7}{|c|}{Тестовая выборка} \\
+    \hline
+    0 & 1.00 & 0.97 & 0.98 &
+    \multirow{2}{*}{0.97} &
+    \multirow{2}{*}{0.50} &
+    241569 \\
+    \cline{1-4} \cline{7-7}
+    1 & 0.00 & 0.00 & 0.00 & & & 8431 \\
+    \hline
+  \end{longtable}
+  \begin{minipage}{\textwidth}
+    \fontsize{9}{11}\selectfont
+    \justifying
+    Источник: составлено автором на основе: Соревнование на данных кредитных историй [Электронный ресурс] / Open Data Science. -- URL: \url{https://ods.ai/competitions/dl-fintech-bki} (дата обращения: 25.11.2025).
+  \end{minipage}
+\end{center}
+
+Были получены результаты $PCA$:
+\begin{equation}
+%\setlength{\arraycolsep}{1.2ex} % компактные столбцы
+\label{pca_lambda41}
+\begin{alignedat}{5} % 5 лямбда в строке
+\lambda_{1}^{(p)}  &= 22.1, & \lambda_{2}^{(p)}  &= 20.3, & \lambda_{3}^{(p)}  &= 17.9, & \lambda_{4}^{(p)}  &= 10.1, & \lambda_{5}^{(p)}  &=  9.7,\\
+\lambda_{6}^{(p)}  &=  7.7, & \lambda_{7}^{(p)}  &=  4.4, & \lambda_{8}^{(p)}  &=  1.7, & \lambda_{9}^{(p)}  &=  1.5, & \lambda_{10}^{(p)} &=  0.9,\\
+\lambda_{11}^{(p)} &= 0.6, & \lambda_{12}^{(p)} &= 0.5, & \lambda_{13}^{(p)} &= 0.4, & \lambda_{14}^{(p)} &= 0.3, & \lambda_{15}^{(p)} &= 0.2,\\
+\lambda_{16}^{(p)} &= 0.2, & \lambda_{17}^{(p)} &= 0.2, & \lambda_{18}^{(p)} &= 0.1, & \lambda_{19}^{(p)} &= 0.1, & \lambda_{20}^{(p)} &= 0.1,\\
+\lambda_{21}^{(p)} &= 0.1, & \lambda_{22}^{(p)} &= 0.1, & \lambda_{23}^{(p)} &= 0.1, & \lambda_{24}^{(p)} &= 0.1, & \lambda_{25}^{(p)} &= 0.1,\\
+\lambda_{26}^{(p)} &= 0.1, & \lambda_{27}^{(p)} &= 0.1, & \lambda_{28}^{(p)} &= 0.1, & \lambda_{29}^{(p)} &= 0.1, & \lambda_{30}^{(p)} &= 0.1,\\
+\lambda_{31}^{(p)} &= 0.0, & \lambda_{32}^{(p)} &= 0.0, & \lambda_{33}^{(p)} &= 0.0, & \lambda_{34}^{(p)} &= 0.0, & \lambda_{35}^{(p)} &= 0.0,\\
+\lambda_{36}^{(p)} &= 0.0, & \lambda_{37}^{(p)} &= 0.0, & \lambda_{38}^{(p)} &= 0.0, & \lambda_{39}^{(p)} &= 0.0, & \lambda_{40}^{(p)} &= 0.0,\\
+\lambda_{41}^{(p)} &= 0.0
+\end{alignedat}
+\end{equation}
+
+В формуле \eqref{pca_lambda41} $\lambda_{1}^{(p)},\dots, \lambda_{41}^{(p)}$ -- это доли собственных чисел ковариационной матрицы, выраженные в процентах. Начиная с  $\lambda_{18}^{(p)}$ эта доля не превышает 0.2\%. Это означает, что существует 24 компонента, которые вносят незначительный вклад в информативность данных. Метод $PCA$ не представляет возможности точно определять какие именно признаки вносят существенный вклад в информативность данных, поэтому необходимо самостоятельно выбирать и удалять признаки с низким вкладом. Было сделано предположение, что наименее информативными признаками являются: \texttt{pre\_pterm}, \texttt{pre\_fterm}, \texttt{pre\_loans\_next\_pay\_summ}, \texttt{pre\_loans\_outstanding}, \texttt{pre\_loans\_total\_over} \\ \texttt{due}, \texttt{pre\_loans\_max\_overdue\_sum}, \texttt{pre\_loans\_credit\_cost\_rate}, \texttt{is\_zero\_loans5}, 
+\texttt{is\_} \texttt{zero\_loans530}, \texttt{is\_zero\_loans3060}, \texttt{is\_zero\_loans6090}, \texttt{is\_zero\_loans90}, \texttt{pre\_util}, \texttt{pre\_maxover2limit}, \texttt{is\_zero\_util},  \texttt{is\_zero\_over2limit}. 
+ 
+ Для подтверждения необходимо повторно проделать метод $PCA$ без 16 признаков, касательно которых было сделано предположение. В листинге \ref{feat_25_py} (см. приложение А) реализуется метод главных компонент. 
+
+\begin{enumerate}
+   \item Строки 1--2. Задаётся файл с датасетом из 25 признаков, который считывается в объект \texttt{DataFrame(df)}. 
+   \item Строки 4--10. Формируется список со статусами ежемесячных платежей \texttt{enc\_paym\_k}, $k = 0,\dots,24$.
+   \item Строка 12. \texttt{X\_pay = df.loc[:, columns\_pay].copy()} -- из исходного датасета \texttt{df} выбираются 25 признаков, которые формируют матрицу \texttt{X\_pay}, содержащую информацию о платёжной дисциплине.
+   \item Строка 13. Создаётся объект метода главных компонент PCA с параметрами по умолчанию.
+   \item Строка 14. На матрице \texttt{X\_pay} обучается модель PCA.
+   \item Строка 16. Вычисляются доли объясненной дисперсии для каждого главного компонента.
+\end{enumerate}
+
+Получается следующая значимость признаков, процентно выраженная в собственных числах ковариационной матрицы  \texttt{X\_pay}.
+
+\begin{equation}
+\label{pca_lambda41_modified}
+\begin{alignedat}{5} % 5 лямбда в строке
+\lambda_{1}^{(p)}  &= 65.5, & \lambda_{2}^{(p)}  &= 16.0, & \lambda_{3}^{(p)}  &= 5.7, & \lambda_{4}^{(p)}  &= 3.0, & \lambda_{5}^{(p)}  &= 1.9,\\
+\lambda_{6}^{(p)}  &= 1.3,  & \lambda_{7}^{(p)}  &= 1.0,  & \lambda_{8}^{(p)}  &= 0.8, & \lambda_{9}^{(p)}  &= 0.7,  & \lambda_{10}^{(p)} &= 0.6,\\
+\lambda_{11}^{(p)} &= 0.5, & \lambda_{12}^{(p)} &= 0.4, & \lambda_{13}^{(p)} &= 0.4, & \lambda_{14}^{(p)} &= 0.3,  & \lambda_{15}^{(p)} &= 0.3,\\
+\lambda_{16}^{(p)} &= 0.3, & \lambda_{17}^{(p)} &= 0.3, & \lambda_{18}^{(p)} &= 0.2, & \lambda_{19}^{(p)} &= 0.2,  & \lambda_{20}^{(p)} &= 0.2,\\
+\lambda_{21}^{(p)} &= 0.1, & \lambda_{22}^{(p)} &= 0.1, & \lambda_{23}^{(p)} &= 0.1, & \lambda_{24}^{(p)} &= 0.1,  & \lambda_{25}^{(p)} &= 0.1.
+\end{alignedat}
+\end{equation}
+
+Из формулы \eqref{pca_lambda41_modified} можно заметить, что осталось только 25 признаков, $\lambda$ чисел которых не равны нулю, т.е. остались те признаки, которые вносят существенный вклад в информативность данных. Однако из таблицы \ref{metrics_41} видно, что некоторые метрики для алгоритма случайного леса равны нулю, что является неприемлемым для прогнозирования кредитных рисков. Например, это метрики $Recall$ и $Precision$, для дефолтных клиентов. На первый взгляд метод $PCA$ не оказал влияния на некоторые метрики алгоритма, но в этом необходимо детально разобраться.
+
+\subsection{Определение аномальности клиента}
+
+Рисунок \ref{fig:skew} показывает, что доля недефолтных клиентов существенно велика и не соответствует статистике в реальной жизни. По данным Первого кредитного бюро 20\% \cite{Tengrinews} казахстанских заемщиков имеют проблемную кредитную историю, что подтверждает данное утверждение и указывает на наличие аномальности в классе недефолтных клиентов. 
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.5]{./ch2/graphics/skew.png}
+\caption{Перекос в сторону 0}
+\label{fig:skew}
+\vspace{10pt}
+\begin{minipage}{\textwidth}
+        \fontsize{9}{11}\selectfont
+        \justifying
+        Источник: составлено автором на основе: Соревнование на данных кредитных историй [Электронный ресурс] / Open Data Science. -- URL: \url{https://ods.ai/competitions/dl-fintech-bki} (дата обращения: 25.11.2025).
+    \end{minipage}
+\end{figure}
+
+В данной работе под аномальностью клиента понимается нетипичное поведение для большинства заемщиков. Речь идет о ситуации, когда клиент фактически не располагает достаточными денежными средствами для обслуживания кредита, однако продолжает вносить ежемесячные платежи с небольшими, но регулярными опозданиями, перезанимая необходимые суммы из других источников. В таблице \ref{table_1_1:dfgr} приведен пример неестественных выплат клиента, из которого видно, что платежная дисциплина клиента по отдельному кредиту не выглядит дефолтной, однако в среднем этот клиент не выплачивал обязательства пунктуально ни в один расчетный месяц (средние значения по месяцам представлены в последней строке таблицы). Ниже будет дано формальное определение и алгоритм выявления таких клиентов в датасете. 
+
+Аномальным клиентом назовем такого клиента, для которого выполняются два условия:
+\begin{equation}
+\left\{
+\begin{aligned}
+\text{(a)}\;& \text{метка (флаг)} = 0, \\
+\text{(b)}\;& \min(\texttt{enc\_paym}_k) > 0,\quad k = 0,\ldots,24.
+\end{aligned}
+\right.
+\tag{$anom$}
+\label{anom}
+\end{equation}
+
+В формуле \ref{anom} условие \text{(a)} означает, что аномальный клиент в датасете является недефолтным, а условие \text{(b)} -- по всем месяцам оплата кредитных обязательств проводилась с опозданием. В листинге \ref{anom0in1_py} (см. приложение А) указана реализация формулы \ref{anom}. 
+
+{\co Пояснение к листингу: \ref{anom0in1_py}} 
+	\begin{enumerate}
+		\item Строка 1. Читаем файл \texttt{train\_target.csv} с целевой переменной в датафрейме \texttt{df}. 
+		\item Строки 2--3. Из столбца \texttt{flag} датафрейма \texttt{df} извлекаются метки для первых 1000000 клиентов, где \texttt{y} это исходные метки дефолта/недефолта, а \texttt{y\_} -- новые метки, которые будут изменяться в процессе нахождения аномальных клиентов. 
+		\item Строка 5. Инициализируются счетчики \texttt{counter\_norm} -- число обычных клиентов, а \texttt{counter\_anom} -- число аномальных клиентов.
+		\item Строка 6. Создаются пустые списки, в которые будут записываться обычные \texttt{ind\_norm} и аномальные клиенты \texttt{ind\_anom}.
+		\item Строка 7. Запускается цикл по всем строкам матрицы \texttt{X\_pay}, где \texttt{i} это порядковый номер клиента (индекс строки), а \texttt{x\_pay} -- платежная история по всем месяцам.
+		\item Строки 8--11. Проверяется условие, которое определяет изначально недефолтных клиентов \texttt{y\_[i] == 0}, у которых по всем месяцам наблюдаются задержки платежей \texttt{min(x\_pay) > 0}. Если оба условия для клиента выполняются, то цикл продолжает искать таких клиентов \texttt{counter\_anom +=1} и добавлять их в список аномальных клиентов \texttt{ind\_anom.append(i)}, где новая метка \texttt{y\_[i]} изменяется на 1. В итоге они попадают в класс аномальных клиентов.
+		\item Строки 12--14. В случае неудовлетворения этим двум условиям цикл относит клиента к обычным (\texttt{counter\_norm += 1}) и добавляет его в список недефолтных \texttt{ind\_norm}.
+	\end{enumerate}
+
+\section{Базовые алгоритмы оценки вероятности возврата кредита}
+\subsection{Деревья решений}
+\subsection{Случайный лес}
+\subsection{Градиентный бустинг}
+\subsection{Нейронные сети}
+	
+\chapter{Тестирование алгоритмов машинного и глубокого обучения на данных по кредитному скорингу}
+\section{Подбор гиперпараметров для алгоритмов машинного и глубокого обучения при оценке возврата кредита}
+\subsection{Деревья решений}
+\subsection{Случайный лес}
+\subsection{Градиентный бустинг}
+\subsection{Нейронная сеть}
+\section{Ограничения и возможности моделей}
+	
+%\chapter{Разработка веб-приложения}
+%\section{Библиотека $Streamlit$ языка Python для разработки приложения}
+%\section{Дизайн и реализация приложения}
+	
+\section*{Заключение}\addcontentsline{toc}{chapter}{Заключение}
+
+
+%%%%%%%%%%%%%% СПИСОК ЛИТЕРАТУРЫ %%%%%%%%%%%%%%%%%%%%%%	
+
+\begin{thebibliography}{00}
+		
+\makeatletter
+\renewcommand\@biblabel[1]{#1}
+\makeatother	
+\bibitem[]{} \textbf{{\large Статьи:}}
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+
+
+		\bibitem{book1} Давыдова, А.А. Анализ и оценка кредитоспособности заемщика финансовыми организациями: обзор подходов и методов оценки // Вестник ВУиТ. -- 2023. -- №1 (51). URL: \url{https://cyberleninka.ru/article/n/analiz-i-otsenka-kreditosposobnosti-zaemschika-finansovymi-organizatsiyami-obzor-podhodov-i-metodov-otsenki}. -- Загл. с экрана.
+
+
+		\bibitem{Smirnov} Смирнов С.В. Методы машинного обучения в макроэкономическом прогнозировании: предварительные итоги. Вопросы экономики. 2025;(10):131-154. \url{https://doi.org/10.32609/0042-8736-2025-10-131-154}. -- Загл. с экрана.
+		
+		\bibitem{book2} Сяоюй, Ш. Разработка моделей кредитного скоринга заёмщиков коммерческих банков с использованием методов машинного обучения: магистерская диссертация // БГУ, Факультет прикладной математики и информатики, Кафедра математического моделирования и анализа данных. URL: \url{https://elib.bsu.by/handle/123456789/331793}. -- Загл. с экрана.
+				
+		\bibitem{article3} Provenzano A. R. Machine learning approach for credit scoring / A. R. Provenzano, D. Triﬁrò, A. Datteo, L. Giada, N. Jean, A. Riciputi, et al. arXiv:2008.01687. -- 2020. -- С. 1 -- 28. 
+				
+		\bibitem{book3} Sadok, H. Artificial intelligence and bank credit analysis: A review / Sakka, F., El Maknouzi, M.E. // Cogent Economics \& Finance. -- 2025. -- С. 1 -- 13.
+
+		
+		
+\makeatletter
+\renewcommand\@biblabel[1]{#1}
+\makeatother
+\bibitem[]{} \textbf{{\large Интернет-ресурсы:}}
+\makeatletter
+\renewcommand\@biblabel[1]{#1.}
+\makeatother
+		
+                 \bibitem{Tengrinews}  Можно ли “отбелить“ кредитную историю и есть ли черный список должников в Казахстане	 [Электронный ресурс] / Информационный интернет-портал. URL: \url{https://tengrinews.kz/kazakhstan_news/li-otbelit-kreditnuyu-istoriyu-est-chernyiy-spisok-doljnikov-560869/}. -- Загл. с экрана.	
+		 \bibitem{AlfaBank} Соревнование на данных кредитных историй [Электронный ресурс] / Open Data Science. URL: \url{https://ods.ai/competitions/dl-fintech-bki}. -- Загл. с экрана.
+		 
+		\bibitem{PCA} PCA [Электронный ресурс] / Python-библиотека для машинного обучения. -- URL: \url{https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.PCA.html}. -- Загл. с экрана.
+\end{thebibliography}
+
+	
+%%%%%%%%%%%%%% ПРИОЛОЖЕНИЕ А%%%%%%%%%%%%%%%%%%%%%%	
+
+\newpage
+
+\section*{Приложение А. Предобработка данных}
+\begin{center}
+\addcontentsline{toc}{chapter}{\text{Приложение А. Предобработка данных}}
+\end{center}
+        
+\lstinputlisting[language = Python,
+		     caption={Формирование единого датасета},
+                      label={train_data_csv_all_py}
+                      ]{./ch2/py/train_data_csv_all.py}
+        
+\newpage
+\lstinputlisting[language = Python,
+		     caption={Датасет, содержащий 41 признак},
+                      label={feat_41_py}
+	              ]{./ch2/py/feat_41.py}
+                
+\newpage       
+\lstinputlisting[language = Python,
+		     caption={Датасет, содержащий 24 признака},
+                      label={feat_25_py}
+	              ]{./ch2/py/feat_25.py}
+	     
+\lstinputlisting[language = Python,
+		      caption={Алгоритм выявления аномальных клиентов},
+                       label={anom0in1_py}
+		      ]{./ch2/py/anom0in1.py}
+
+
+\section*{Приложение Б}
+	
+	
+	
+	
+\end{document}
